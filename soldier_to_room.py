@@ -35,14 +35,26 @@ def lists_vacant_and_waiting(soldiers:list,houses:list):
                 distance_base.pop(0)
                 vacant.append(soldier)
                 break
-
-    for soldier in soldiers:
+    while distance_base:
+     for soldier in soldiers:
       if distance_base:
         if soldier.distance_base == distance_base[0]:
             waiting.append(soldier)
             distance_base.pop(0)
     return [vacant,waiting]
 
+def sorting_waiting(waiting):
+    distance_base = []
+    for soldier in waiting:
+        distance_base.append(soldier.distance_base)
+    distance_base = buot(distance_base)
+    list = []
+    while len(list) < len(waiting):
+      for soldier in waiting:
+        if soldier.distance_base == distance_base[0]:
+            list.append(soldier)
+            distance_base.pop(0)
+    return list
 
 
 
