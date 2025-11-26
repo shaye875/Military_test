@@ -1,7 +1,6 @@
 from classes.soldier import Soldier
 from classes.dwelling_house import DwellingHouse
-from classes.dwelling_house_A import DwellingHouseA
-from classes.dwelling_house_B import DwellingHouseB
+
 def obj_soldier(id:int,first_name:str,last_name:str,gender:str,city:str,distance_base:int):
     soldier = Soldier(id,first_name, last_name, gender, city, distance_base)
     return soldier
@@ -49,13 +48,7 @@ def lists_vacant_and_waiting(soldiers:list,houses:list):
 
 
 
-s = Soldier(1,"w","r","d","s",6)
-s1 = Soldier(1,"w","r","d","s",5)
-s2 = Soldier(1,"w","r","d","s",4)
-s3 = Soldier(1,"w","r","d","s",3)
-a = DwellingHouse(1,3)
-s4 = Soldier(1,"w","r","d","s",7)
-l = lists_vacant_and_waiting([s,s1,s2,s3,s4],[a])
+
 
 
 
