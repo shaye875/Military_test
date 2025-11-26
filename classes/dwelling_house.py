@@ -9,16 +9,15 @@ class DwellingHouse:
 
     @property
     def vacant(self):
-        if self.__vacant > 0:
-            return True
-        return False
+        return self.__vacant
+
 
     def set_vacant(self):
         self.__vacant-=1
-
-    def soldier_in_house(self):
-        vacant = self.vacant
-        if vacant:
-            self.set_vacant()
-            return True
-        return False
+    #
+    # def soldier_in_house(self):
+    #     vacant = self.vacant
+    #     if vacant:
+    #         self.set_vacant()
+    #         return True
+    #     return False

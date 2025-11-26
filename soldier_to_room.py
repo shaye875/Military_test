@@ -26,17 +26,16 @@ def lists_vacant_and_waiting(soldiers:list,houses:list):
     for soldier in soldiers:
         distance_base.append(soldier.distance_base)
     distance_base = buot(distance_base)
+    count =0
     for house in houses:
-        bool = house.soldier_in_house()
-        if bool == True:
-         for soldier in soldiers:
-                  if soldier.distance_base == distance_base[0]:
-                      soldier.set_placement(True)
-                      vacant.append(soldier)
-                      distance_base.pop(0)
-
-        else:
-            break
+        count+=house.vacant
+    while len(vacant) < count:
+        for soldier in soldiers:
+            if soldier.distance_base == distance_base[0]:
+                soldier.set_placement(True)
+                distance_base.pop(0)
+                vacant.append(soldier)
+                break
 
     for soldier in soldiers:
       if distance_base:
@@ -47,42 +46,18 @@ def lists_vacant_and_waiting(soldiers:list,houses:list):
 
 
 
-#
-# def lists_vacant_and_waiting(soldiers:list,houses:list):
-#     soldiers1 = soldiers
-#     vacant =  []
-#     waiting = []
-#     while soldiers1:
-#        max = 0
-#        for item in soldiers1:
-#
-#         if item.distance_base > max:
-#             max = item.distance_base
-#             soldiers1.remove(item)
-#        wait = True
-#        for house in houses:
-#         bool = house.soldier_in_house()
-#         if bool == True:
-#             wait = False
-#             for item in soldiers:
-#                 print(item.distance_base)
-#                 if item.distance_base == max:
-#                     item.set_placement(True)
-#                     vacant.append(item)
-#             break
-#        if wait == True:
-#         waiting+=soldiers1
-#         soldiers1 = []
-#     return [vacant,waiting]
+
+
 
 s = Soldier(1,"w","r","d","s",6)
 s1 = Soldier(1,"w","r","d","s",5)
 s2 = Soldier(1,"w","r","d","s",4)
 s3 = Soldier(1,"w","r","d","s",3)
-a = DwellingHouse(1,2)
+a = DwellingHouse(1,3)
 s4 = Soldier(1,"w","r","d","s",7)
-print(lists_vacant_and_waiting([s,s1,s2,s3,s4],[a]))
-# print(a.vacant)
+l = lists_vacant_and_waiting([s,s1,s2,s3,s4],[a])
+
+
 
 
 
