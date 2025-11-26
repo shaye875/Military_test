@@ -4,6 +4,8 @@ from classes.dwelling_house import DwellingHouse
 import csv
 import uvicorn
 from classes.maneger import Maneger
+from scllite import *
+
 app = FastAPI()
 
 @app.post('/assignWithCsv')
@@ -49,3 +51,23 @@ def id_in_room(id):
     for soldier in list:
         if soldier.id == id:
             return {soldier.id:soldier.placement}
+
+
+@app.post("/initializeScheme")
+def keeping_db(file:UploadFile = File()):
+    with open(file.filename, encoding="utf-8") as f:
+        reader = csv.reader(f)
+        next(reader)
+        conn = create_db_add_conected()
+        cursor = conn.cursor()
+        cursor.execute("create table soldier(id integer,first_name text,last_name text,gender text,city text,distance_base integer)")
+        for row in reader:
+           cursor.execute("insert into soldier (id,first_name,last_name,gender,city,distance_base)values(?,?,?,?,?,?)",row)
+           conn.commit()
+        cursor.execute("select * from soldier")
+        return cursor.fetchall()
+
+
+
+
+
